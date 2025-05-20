@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+        .img-thumbnail {
+            max-height: 300px;
+            object-fit: cover;
+        }
+        .result-card {
+            border: 1px solid #007bff;
+            border-radius: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="result-card">
+                    <h2 class="text-center mb-4">Prediction Result</h2>
+                    <div class="text-center mb-4">
+                        <!-- Ensure that the correct base64 format is being used for image display -->
+                        <img src="data:image/jpeg;base64,{{ image_base64 }}" class="img-thumbnail" alt="Uploaded Image">
+                    </div>
+                    <h4>Predicted Class: {{ predicted_class }}</h4>
+                    <h5>Confidence: {{ confidence }}%</h5>
+                    <h5 class="mt-4">Precautions (English):</h5>
+                    <ul>
+                        {% for precaution in precautions_en %}
+                            <li>{{ precaution }}</li>
+                        {% endfor %}
+                    </ul>
+
+                    <h5 class="mt-4">Precautions (Telugu):</h5>
+                    <ul>
+                        {% for precaution in precautions_te %}
+                            <li>{{ precaution }}</li>
+                        {% endfor %}
+                    </ul>
+
+                    <div class="text-center mt-4">
+                        <a href="/" class="btn btn-secondary">Go Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
